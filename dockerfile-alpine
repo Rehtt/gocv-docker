@@ -1,0 +1,14 @@
+FROM golang:1.15-alpine3.14
+ENV PKG="sudo \
+        git \
+        make \
+        cmake \
+        gcc \
+        g++ \
+        curl \
+        pkgconfig \
+        opencv-dev"
+RUN apk --no-cache add ${PKG} && \
+    cd / && git clone https://github.com/hybridgroup/gocv.git && \
+    cd gocv && make install_static && rm -rf /var/cache/apk/*
+
