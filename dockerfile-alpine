@@ -1,4 +1,5 @@
 FROM golang:1.15-alpine3.14
+LABEL maintainer="Rehtt. https://github.com/Rehtt/gocv-docker"
 ENV PKG="sudo \
         git \
         make \
@@ -10,5 +11,6 @@ ENV PKG="sudo \
         opencv-dev"
 RUN apk --no-cache add ${PKG} && \
     cd / && git clone https://github.com/hybridgroup/gocv.git && \
-    cd gocv && make install_static && rm -rf /var/cache/apk/*
+    cd gocv && make install_static 2>&1 && rm -rf /var/cache/apk/* && \
+    go get gocv.io/x/gocv
 
