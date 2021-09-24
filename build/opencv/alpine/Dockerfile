@@ -1,5 +1,5 @@
-FROM golang:1.15-alpine3.14
-LABEL maintainer="Rehtt. https://github.com/Rehtt/gocv-docker"
+FROM golang:1.17.1-alpine3.14
+LABEL maintainer="Rehtt. https://github.com"
 ENV PKG="git \
         gcc \
         g++ \
@@ -7,5 +7,4 @@ ENV PKG="git \
         opencv-dev"
 ENV GOPROXY=https://goproxy.io,direct
 RUN apk --no-cache add ${PKG} && \
-    go get -v gocv.io/x/gocv &&\
     rm -rf /var/cache/apk/*
